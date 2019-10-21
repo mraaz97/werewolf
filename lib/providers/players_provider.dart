@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:webapp/providers/player_provider.dart';
 
-
 class PlayersProvider extends ChangeNotifier {
-
-
   List<PlayerProvider> _playersList = [];
 
   List<PlayerProvider> get playersList {
@@ -17,7 +13,7 @@ class PlayersProvider extends ChangeNotifier {
     _playersList.add(newPlayer);
     notifyListeners();
   }
-  
+
   void removePlayer(int index) {
     _playersList.removeAt(index);
     notifyListeners();

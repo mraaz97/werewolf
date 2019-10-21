@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:webapp/providers/players_provider.dart';
 import 'package:webapp/screens/add_player_screen.dart';
-import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -12,7 +12,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     var loadedPlayersData = Provider.of<PlayersProvider>(context);
-   var players = loadedPlayersData.playersList;
+    var players = loadedPlayersData.playersList;
     return Scaffold(
       body: ListView.builder(
           itemCount: players.length,
@@ -33,9 +33,7 @@ class _MainScreenState extends State<MainScreen> {
               )),
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(icon: Icon(Icons.sync), onPressed: () {
-
-        }),
+        leading: IconButton(icon: Icon(Icons.sync), onPressed: () {}),
         backgroundColor: Colors.teal,
         title: Text('MörderGame'),
       ),

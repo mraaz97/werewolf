@@ -26,8 +26,4 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-//ListView.builder(
-//padding: const EdgeInsets.all(8),
-//itemCount: counter,
-//itemBuilder: (ctx, i) => createNewPlayer(playersList),
-//),
+

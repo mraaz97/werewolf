@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:webapp/providers/players_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:webapp/providers/players_provider.dart';
+import 'package:webapp/utilities/constants.dart';
 
 class AddPlayerScreen extends StatelessWidget {
   final myController = TextEditingController();
@@ -15,20 +16,19 @@ class AddPlayerScreen extends StatelessWidget {
             child: Column(
           children: <Widget>[
             TextField(
+              decoration: kTextFieldInputDecoration,
               controller: myController,
-              decoration:
-                  InputDecoration(labelText: 'Neuen Spieler hinzufügen'),
               onChanged: (value) => newPlayer = value,
             ),
             FlatButton(
                 color: Colors.teal,
                 onPressed: () {
-
-                  if(newPlayer.isEmpty) {
+                  if (newPlayer == null) {
+                    Navigator.of(context).pop();
+                  } else {
+                    playersData.addPlayer(newPlayer);
                     Navigator.of(context).pop();
                   }
-                  playersData.addPlayer(newPlayer);
-                  Navigator.of(context).pop();
                 },
                 child: Text('Spieler hinzufügen')),
           ],
@@ -41,7 +41,6 @@ class AddPlayerScreen extends StatelessWidget {
               Navigator.of(context).pop();
             }),
         backgroundColor: Colors.teal,
-        title: Text('Neuen Spieler Hinzufügen'),
       ),
     );
   }

@@ -5,7 +5,7 @@ const kTextFieldInputDecoration = InputDecoration(
     fillColor: Colors.white,
     icon: Icon(
       Icons.person,
-      color: Colors.white,
+      color: Colors.teal,
     ),
     hintText: 'Enter Player Name',
     hintStyle: TextStyle(color: Colors.grey),
