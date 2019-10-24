@@ -13,6 +13,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     var loadedPlayersData = Provider.of<PlayersProvider>(context);
     var players = loadedPlayersData.playersList;
+    String subtitle='';
+    int anzahlSpieler = players.length;
     return Scaffold(
       body: ListView.builder(
           itemCount: players.length,
@@ -33,9 +35,13 @@ class _MainScreenState extends State<MainScreen> {
               )),
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(icon: Icon(Icons.sync), onPressed: () {}),
+        leading: IconButton(
+            icon: Icon(Icons.sync),
+            onPressed: () {
+              loadedPlayersData.assignRole(players);
+            }),
         backgroundColor: Colors.teal,
-        title: Text('MörderGame'),
+        title: Text('MörderGame ' + 'Anzahl: ' + anzahlSpieler.toString()),
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.teal,
