@@ -53,7 +53,7 @@ class PlayersProvider extends ChangeNotifier {
 
   void shufflePlayer(String name, String role) {
     PlayerProvider newPlayer = PlayerProvider(name, role);
-    _playersList.insert(0, newPlayer);
+    _playersList.add(newPlayer);
     notifyListeners();
   }
 
@@ -97,24 +97,27 @@ class PlayersProvider extends ChangeNotifier {
 
     removePlayer(rN1);
     shufflePlayer(name1, 'Heiler');
-
     removePlayer(rN2);
     shufflePlayer(name2, 'Seher');
-
     removePlayer(rN3);
     shufflePlayer(name3, 'Mörder 1');
-
     removePlayer(rN4);
     shufflePlayer(name4, 'Mörder 2');
-
     removePlayer(rN5);
     shufflePlayer(name5, 'Mörder 3');
-
     removePlayer(rN6);
     shufflePlayer(name6, 'Liebespaar 1');
-
     removePlayer(rN7);
     shufflePlayer(name7, 'Liebespaar 2');
     notifyListeners();
+  }
+
+  void resetRoles(List playersList) {
+    for (int i = 0; i < playersList.length; i++) {
+      String name = playersList[i].name;
+      removePlayer(i);
+      addPlayer(name);
+      notifyListeners();
+    }
   }
 }

@@ -72,14 +72,21 @@ class _MainScreenState extends State<MainScreen> {
             },
           ),
           SpeedDialChild(
-            child: Icon(Icons.sync),
-            backgroundColor: Colors.red,
-            label: 'Rollen verteilen',
-            labelStyle: TextStyle(fontSize: 18.0),
-            onTap: () {
-              loadedPlayersData.assignRole(playersList);
-            }
-          )
+              child: Icon(Icons.sync),
+              backgroundColor: Colors.red,
+              label: 'Rollen verteilen',
+              labelStyle: TextStyle(fontSize: 18.0),
+              onTap: () {
+                loadedPlayersData.assignRole(playersList);
+              }),
+          SpeedDialChild(
+              child: Icon(Icons.refresh),
+              backgroundColor: Colors.red,
+              label: 'Alle Rollen zurücksetzen',
+              labelStyle: TextStyle(fontSize: 18.0),
+              onTap: () {
+                loadedPlayersData.resetRoles(playersList);
+              })
         ],
       ),
     );
