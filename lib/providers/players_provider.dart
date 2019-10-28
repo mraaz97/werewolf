@@ -57,21 +57,6 @@ class PlayersProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-//  String getRoleTypeString(List playersList) {
-//    for (int i = 0; i < playersList.length; i++) {
-//      if (playersList[i] == RoleType.Seer) {
-//        return 'Seher';
-//      } else if (playersList[i] == RoleType.Healer) {
-//        return 'Heiler';
-//      } else if (playersList[i] == RoleType.Killer) {
-//        return 'Mörder';
-//      } else if (playersList[i] == RoleType.LoveBird) {
-//        return 'Liebespaar';
-//      }
-//    }
-//    return 'Bürger';
-//  }
-
   void assignRole(List playersList) {
     int rN1 = randomNumber(playersList, []);
     print(playersList.length);
@@ -89,8 +74,6 @@ class PlayersProvider extends ChangeNotifier {
     print(rN6); //Liebespaar
     int rN7 = randomNumber(playersList, [rN1, rN2, rN3, rN4, rN5, rN6]);
     print(rN7);
-//    int rN8 = randomNumber(playersList, [rN1, rN2, rN3, rN4, rN5, rN6, rN7]);
-//    print(rN8); //Liebespaar//Liebespaar
 
     String name1 = playersList[rN1].name;
     String name2 = playersList[rN2].name;
@@ -99,34 +82,37 @@ class PlayersProvider extends ChangeNotifier {
     String name5 = playersList[rN5].name;
     String name6 = playersList[rN6].name;
     String name7 = playersList[rN7].name;
-//    String name8 = playersList[rN8].name;
 
     removePlayer(rN1);
     shufflePlayer(name1, 'Heiler');
+    notifyListeners();
     removePlayer(rN2);
     shufflePlayer(name2, 'Seher');
+    notifyListeners();
     removePlayer(rN3);
     shufflePlayer(name3, 'Mörder');
+    notifyListeners();
     removePlayer(rN4);
     shufflePlayer(name4, 'Mörder');
+    notifyListeners();
     removePlayer(rN5);
     shufflePlayer(name5, 'Mörder');
+    notifyListeners();
     removePlayer(rN6);
-    shufflePlayer(name6, 'Liebespaar');
+    shufflePlayer(name6, 'Liebespaar 1');
+    notifyListeners();
     removePlayer(rN7);
-    shufflePlayer(name7, 'Liebespaar');
-//    removePlayer(rN8);
-//    shufflePlayer(name8, 'Amor');
+    shufflePlayer(name7, 'Liebespaar 2');
     notifyListeners();
   }
 }
 
 int randomNumber(List playersList, List<int> randomNumbers) {
-  int randomNumber = Random().nextInt(playersList.length + 1);
-
+  ///to-do: currnetly there still is a chance that the same number gets randomly picked
+  int randomNumber = Random().nextInt(playersList.length);
   for (int i = 0; i < randomNumbers.length; i++) {
     if (randomNumber == randomNumbers[i]) {
-      randomNumber = Random().nextInt(playersList.length + 1);
+      randomNumber = Random().nextInt(playersList.length);
     }
   }
 
