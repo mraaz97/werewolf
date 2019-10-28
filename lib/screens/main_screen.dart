@@ -12,18 +12,18 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     var loadedPlayersData = Provider.of<PlayersProvider>(context);
-    var players = loadedPlayersData.playersList;
-    String subtitle='';
-    int anzahlSpieler = players.length;
+    var playersList = loadedPlayersData.playersList;
+    int playersCount = playersList.length;
+
     return Scaffold(
       body: ListView.builder(
-          itemCount: players.length,
+          itemCount: playersList.length,
           itemBuilder: (context, i) => Card(
                 color: Colors.white30,
                 child: ListTile(
                   leading: Icon(Icons.person),
-                  title: Text(players[i].name),
-                  subtitle: Text(players[i].role),
+                  title: Text(playersList[i].name),
+                  subtitle: Text(playersList[i].role),
                   trailing: IconButton(
                     color: Colors.red,
                     icon: Icon(Icons.delete),
@@ -38,10 +38,11 @@ class _MainScreenState extends State<MainScreen> {
         leading: IconButton(
             icon: Icon(Icons.sync),
             onPressed: () {
-              loadedPlayersData.assignRole(players);
+              loadedPlayersData.assignRole(playersList);
+              print('***************************');
             }),
         backgroundColor: Colors.teal,
-        title: Text('MörderGame ' + 'Anzahl: ' + anzahlSpieler.toString()),
+        title: Text('MörderGame ' + 'Spieleranzahl: ' + playersCount.toString()),
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.teal,
