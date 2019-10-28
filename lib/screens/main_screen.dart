@@ -76,7 +76,9 @@ class _MainScreenState extends State<MainScreen> {
             backgroundColor: Colors.red,
             label: 'Rollen verteilen',
             labelStyle: TextStyle(fontSize: 18.0),
-            onTap: () => loadedPlayersData.assignRole(playersList),
+            onTap: () {
+              loadedPlayersData.assignRole(playersList);
+            }
           )
         ],
       ),

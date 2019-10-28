@@ -53,8 +53,20 @@ class PlayersProvider extends ChangeNotifier {
 
   void shufflePlayer(String name, String role) {
     PlayerProvider newPlayer = PlayerProvider(name, role);
-    _playersList.add(newPlayer);
+    _playersList.insert(0, newPlayer);
     notifyListeners();
+  }
+
+  int randomNumber(List playersList, List<int> randomNumbers) {
+    ///to-do: currnetly there still is a chance that the same number gets randomly picked
+    int randomNumber = Random().nextInt(playersList.length);
+    for (int i = 0; i < randomNumbers.length; i++) {
+      if (randomNumber == randomNumbers[i]) {
+        randomNumber = Random().nextInt(playersList.length);
+      }
+    }
+
+    return randomNumber;
   }
 
   void assignRole(List playersList) {
@@ -85,36 +97,24 @@ class PlayersProvider extends ChangeNotifier {
 
     removePlayer(rN1);
     shufflePlayer(name1, 'Heiler');
-    notifyListeners();
+
     removePlayer(rN2);
     shufflePlayer(name2, 'Seher');
-    notifyListeners();
+
     removePlayer(rN3);
-    shufflePlayer(name3, 'Mörder');
-    notifyListeners();
+    shufflePlayer(name3, 'Mörder 1');
+
     removePlayer(rN4);
-    shufflePlayer(name4, 'Mörder');
-    notifyListeners();
+    shufflePlayer(name4, 'Mörder 2');
+
     removePlayer(rN5);
-    shufflePlayer(name5, 'Mörder');
-    notifyListeners();
+    shufflePlayer(name5, 'Mörder 3');
+
     removePlayer(rN6);
     shufflePlayer(name6, 'Liebespaar 1');
-    notifyListeners();
+
     removePlayer(rN7);
     shufflePlayer(name7, 'Liebespaar 2');
     notifyListeners();
   }
-}
-
-int randomNumber(List playersList, List<int> randomNumbers) {
-  ///to-do: currnetly there still is a chance that the same number gets randomly picked
-  int randomNumber = Random().nextInt(playersList.length);
-  for (int i = 0; i < randomNumbers.length; i++) {
-    if (randomNumber == randomNumbers[i]) {
-      randomNumber = Random().nextInt(playersList.length);
-    }
-  }
-
-  return randomNumber;
 }
