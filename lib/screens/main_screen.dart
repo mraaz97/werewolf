@@ -13,23 +13,30 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     var loadedPlayersData = Provider.of<PlayersProvider>(context);
-    var playersList = loadedPlayersData.playersList;
-    int playersCount = playersList.length;
 
+    var playerNames = loadedPlayersData.playersMap.keys.toList();
+    var playerRoles = loadedPlayersData.playersMap.values.toList();
+    int playersCount = playerNames.length;
     return Scaffold(
       body: ListView.builder(
-          itemCount: playersList.length,
+          itemCount: playerNames.length,
           itemBuilder: (context, i) => Card(
                 color: Colors.white30,
                 child: ListTile(
                   leading: Icon(Icons.person),
-                  title: Text(playersList[i].name),
-                  subtitle: Text(playersList[i].role),
+                  title: Text(playerNames[i]),
+                  subtitle: Text(
+                    playerRoles[i],
+                    style: TextStyle(
+                      color:  newTextStyle(playerRoles[i]) ? Colors.black : Colors.teal,
+                    ),
+                  ),
                   trailing: IconButton(
                     color: Colors.red,
                     icon: Icon(Icons.delete),
                     onPressed: () {
-                      loadedPlayersData.removePlayer(i);
+                      var name = playerNames[i];
+                      loadedPlayersData.removePlayer(name);
                     },
                   ),
                 ),
@@ -77,7 +84,7 @@ class _MainScreenState extends State<MainScreen> {
               label: 'Rollen verteilen',
               labelStyle: TextStyle(fontSize: 18.0),
               onTap: () {
-                loadedPlayersData.assignRole(playersList);
+                loadedPlayersData.assignRole();
               }),
           SpeedDialChild(
               child: Icon(Icons.refresh),
@@ -85,10 +92,18 @@ class _MainScreenState extends State<MainScreen> {
               label: 'Alle Rollen zurücksetzen',
               labelStyle: TextStyle(fontSize: 18.0),
               onTap: () {
-                loadedPlayersData.resetRoles(playersList);
+                loadedPlayersData.resetRoles();
               })
         ],
       ),
     );
+  }
+}
+
+bool newTextStyle(String role) {
+  if (role == 'Bürger') {
+    return true;
+  } else {
+    return false;
   }
 }
