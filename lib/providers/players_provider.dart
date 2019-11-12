@@ -1,38 +1,11 @@
-import 'dart:math';
-import 'package:collection/collection.dart';
-
 import 'package:flutter/material.dart';
 
 enum RoleType { Seer, Healer, LoveBird, Killer, Citizen }
 
-int seer = 1;
-int healer = 1;
-int loveBird = 2;
-int killer = 4;
-int amor = 1;
-
 class PlayersProvider extends ChangeNotifier {
   ///to-do: implement that user can choose number of killers himself
 
-  final Map<String, String> _playersMap = <String, String>{
-    'Matthias': 'Bürger',
-    'Lea': 'Bürger',
-    'Spieler 3': ' Bürger',
-    'Spieler 4': ' Bürger',
-    'Spieler 5': ' Bürger',
-    'Spieler 6': ' Bürger',
-    'Spieler 7': ' Bürger',
-    'Spieler 8': ' Bürger',
-    'Spieler 9': ' Bürger',
-    'Spieler 10': ' Bürger',
-    'Spieler 11': ' Bürger',
-    'Spieler 12': ' Bürger',
-    'Spieler 13': ' Bürger',
-    'Spieler 14': ' Bürger',
-    'Spieler 15': ' Bürger',
-    'Spieler 16': ' Bürger',
-    'Spieler 17': ' Bürger',
-  };
+  final Map<String, String> _playersMap = <String, String>{};
 
   Map<String, String> get playersMap {
     return _playersMap;
