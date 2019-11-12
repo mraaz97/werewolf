@@ -28,7 +28,9 @@ class _MainScreenState extends State<MainScreen> {
                   subtitle: Text(
                     playerRoles[i],
                     style: TextStyle(
-                      color:  newTextStyle(playerRoles[i]) ? Colors.black : Colors.teal,
+                      color: newTextStyle(playerRoles[i])
+                          ? Colors.black
+                          : Colors.teal,
                     ),
                   ),
                   trailing: IconButton(
@@ -43,9 +45,8 @@ class _MainScreenState extends State<MainScreen> {
               )),
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: Icon(Icons.tag_faces),
         backgroundColor: Colors.teal,
-        title: Text('Werwolf'),
+        title: const Text('Werwolf'),
         actions: <Widget>[
           Icon((Icons.person)),
           Center(

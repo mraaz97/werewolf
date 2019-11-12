@@ -49,26 +49,45 @@ class PlayersProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void resetGame() {
+    playersMap.clear();
+    notifyListeners();
+  }
+
+  void resetRoles() {
+    _playersMap.forEach(
+        (key, value) => _playersMap.update(key, (String value) => 'Bürger'));
+    notifyListeners();
+  }
+
+  List randomNumberGenerator() {
+    var playerNames = playersMap.keys.toList();
+
+    var myList = [for (int i = 0; i < playerNames.length; i++) i];
+    myList.shuffle();
+    print(myList.take(7));
+    return myList;
+  }
+
   void assignRole() {
     ///to-do: Make it absulutely undbreakable
     try {
       var playerNames = playersMap.keys.toList();
-      List l = randomNumberGenerator();
-      int rN1 = l[0];
+      var l = randomNumberGenerator();
       print('###############################################');
-      print(rN1); //Heiler
-      int rN2 = l[1];
-      print(rN2); //Seher
-      int rN3 = l[2];
-      print(rN3); // Mörder
-      int rN4 = l[3];
-      print(rN4); // Mörder
-      int rN5 = l[4];
-      print(rN5); // Mörder
-      int rN6 = l[5];
-      print(rN6); //Liebespaar 1
-      int rN7 = l[6];
-      print(rN7); //Liebespaar 2
+      int rN1 = l[0]; //Heiler
+
+      int rN2 = l[1]; //Seher
+
+      int rN3 = l[2]; // Mörder
+
+      int rN4 = l[3]; // Mörder
+
+      int rN5 = l[4]; // Mörder
+
+      int rN6 = l[5]; //Liebespaar 1
+
+      int rN7 = l[6]; //Liebespaar 2
 
       String name1 = playerNames[rN1];
       String name2 = playerNames[rN2];
@@ -88,32 +107,5 @@ class PlayersProvider extends ChangeNotifier {
     } catch (e) {
       print('I domnt know what is going on heerrreee');
     }
-  }
-
-//
-  void resetGame() {
-    playersMap.clear();
-    notifyListeners();
-  }
-
-  void resetRoles() {
-    _playersMap.forEach(
-        (key, value) => _playersMap.update(key, (String value) => 'Bürger'));
-    notifyListeners();
-  }
-
-  List randomNumberGenerator() {
-    var rng = new Random();
-    var playerNames = playersMap.keys.toList();
-    Map<int, int> randomNumbersMap = {};
-
-    for (int i = 0; i < 8; i++) {
-      int number = rng.nextInt(playerNames.length);
-      randomNumbersMap.putIfAbsent(number, () => number);
-    }
-    List numberList = randomNumbersMap.keys.toList();
-    randomNumbersMap.clear();
-    print('#### $numberList ######');
-    return numberList;
   }
 }
